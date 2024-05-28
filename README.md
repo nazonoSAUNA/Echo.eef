@@ -1,5 +1,5 @@
 # エコー(拡張編集フィルタプラグイン)
-- [ダウンロードはこちら](../../releases/)
+- [ダウンロードはこちら](../../releases/) ※通常の使用には [残響オブジェクト](https://github.com/nazonoSAUNA/ReverberationObject.eef/) も必要になると思われます
 - Echo.eefをpluginsフォルダに配置してください
 
 - このプラグインを読み込むためにはpatch.aul r43_ss_58以降が必要です https://scrapbox.io/nazosauna/patch.aul
