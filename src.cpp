@@ -1,4 +1,4 @@
-﻿#include <windows.h>
+#include <windows.h>
 #include <algorithm>
 #include <exedit.hpp>
 
@@ -49,10 +49,6 @@ struct Exdata {
     int type;
 };
 
-int get_exedit_dll_hinst(ExEdit::Filter* efp) {
-    constexpr int exedit92_exfunc_address = 0xa41e0;
-    return (int)efp->exfunc - exedit92_exfunc_address;
-}
 DWORD get_func_address(DWORD call_address) {
     return 4 + call_address + *reinterpret_cast<DWORD*>(call_address);
 }
@@ -196,7 +192,7 @@ BOOL func_proc(ExEdit::Filter* efp, ExEdit::FilterProcInfo* efpip) {
     return TRUE;
 }
 BOOL func_init(ExEdit::Filter* efp) {
-    int exedit_dll_hinst = get_exedit_dll_hinst(efp);
+    int exedit_dll_hinst = (int)efp->exedit_fp->dll_hinst;
     if (get_or_create_cache == nullptr) {
         // patch.aulにて音声ディレイのキャッシュを共有キャッシュに置き換える部分。同じ関数を読み込む
         (get_or_create_cache) = reinterpret_cast<decltype(get_or_create_cache)>(get_func_address(exedit_dll_hinst + 0x1c1ea));
